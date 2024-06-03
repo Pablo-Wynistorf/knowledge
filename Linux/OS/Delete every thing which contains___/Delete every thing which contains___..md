@@ -1,0 +1,3 @@
+```
+rm -r *[Containing signs]*
+```
