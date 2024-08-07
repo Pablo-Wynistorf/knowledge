@@ -8,15 +8,13 @@ Then add the js code:
 function handler(event) {
     var request = event.request;
     var uri = request.uri;
+
+    var headerValue = uri.split('/')[1];
     
-    var uriParts = uri.split('?');
-    var path = uriParts[0].split('/');
-    var queryString = uriParts[1] ? '?' + uriParts[1] : '';
-
-    request.headers['x-path'] = { value: path[1] };
-
-    request.uri = '/' + path.slice(2).join('/') + queryString;
-
+    request.headers['x-path'] = { value: headerValue };
+    
+    request.uri = uri.replace('/' + headerValue, '');
+    
     return request;
 }
 ```
