@@ -13,15 +13,12 @@ function handler(event) {
     var path = uriParts[0].split('/');
     var queryString = uriParts[1] ? '?' + uriParts[1] : '';
 
-    // Add the first segment of the path to the x-path header
     request.headers['x-path'] = { value: path[1] };
 
-    // Modify the URI and append the query string back
     request.uri = '/' + path.slice(2).join('/') + queryString;
 
     return request;
 }
-
 ```
 
 
