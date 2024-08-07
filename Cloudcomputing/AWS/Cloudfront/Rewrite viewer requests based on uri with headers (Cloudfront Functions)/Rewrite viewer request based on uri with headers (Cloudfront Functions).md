@@ -9,14 +9,19 @@ function handler(event) {
     var request = event.request;
     var uri = request.uri;
     
-    var parts = uri.split('/');
+    var uriParts = uri.split('?');
+    var path = uriParts[0].split('/');
+    var queryString = uriParts[1] ? '?' + uriParts[1] : '';
 
-    request.headers['x-server'] = { value: parts[1] };
-    
-    request.uri = '/' + parts.slice(2).join('/')
-    
+    // Add the first segment of the path to the x-path header
+    request.headers['x-path'] = { value: path[1] };
+
+    // Modify the URI and append the query string back
+    request.uri = '/' + path.slice(2).join('/') + queryString;
+
     return request;
 }
+
 ```
 
 
