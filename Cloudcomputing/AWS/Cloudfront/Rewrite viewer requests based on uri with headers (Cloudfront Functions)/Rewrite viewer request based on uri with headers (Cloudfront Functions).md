@@ -6,14 +6,19 @@ Then add the js code:
 
 ```javascript
 function handler(event) {
-    var request = event.request;
-    var uri = request.uri;
-
-    var headerValue = uri.split('/')[1];
+    const request = event.request;
+    const uri = request.uri;
     
-    request.headers['x-path'] = { value: headerValue };
+    const rawHeaderValue = uri.split('/')[1];
+    const headerValue = rawHeaderValue.split('?')[0];
+    
+    request.headers['x-path'] = { value: headerValue }
     
     request.uri = uri.replace('/' + headerValue, '');
+    
+    if (request.uri === '') {
+        request.uri = '/'
+    }
     
     return request;
 }
