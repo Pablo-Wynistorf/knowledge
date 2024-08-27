@@ -6,14 +6,19 @@ Then add the js code:
 
 ```javascript
 function handler(event) {
-    var request = event.request;
-    var uri = request.uri;
+    const request = event.request;
+    const uri = request.uri;
     
-    var parts = uri.split('/');
-
-    request.headers['x-server'] = { value: parts[1] };
+    const rawHeaderValue = uri.split('/')[1];
+    const headerValue = rawHeaderValue.split('?')[0];
     
-    request.uri = '/' + parts.slice(2).join('/')
+    request.headers['x-path'] = { value: headerValue }
+    
+    request.uri = uri.replace('/' + headerValue, '');
+    
+    if (request.uri === '') {
+        request.uri = '/'
+    }
     
     return request;
 }
@@ -31,7 +36,7 @@ IMPORTANT:
 
 Create a custom origin request policy, with the correct headers that are included in the request. In this case the x-server header.
 
-![](https://slabstatic.com/prod/uploads/ptzfq7y2/posts/images/preload/V2B21F0G9P1aqlM6cVKepQaS.png)
+![](https://slabstatic.com/prod/uploads/ptzfq7y2/posts/images/preload/1oKNDGJQVsEWs42NoXADL4UO.png)
 
 Create it and associate it in the **Behaviors** tab under **Origin request policy name**:
 
