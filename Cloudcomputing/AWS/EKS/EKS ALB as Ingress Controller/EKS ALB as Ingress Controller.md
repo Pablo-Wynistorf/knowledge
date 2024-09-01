@@ -39,14 +39,6 @@ spec:
                 number: 80
 ```
 
-This
-
-
-
-
-
-
-
 Here you find all possible annotations:
 
 ## Annotations[¶](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/ingress/annotations/#annotations)

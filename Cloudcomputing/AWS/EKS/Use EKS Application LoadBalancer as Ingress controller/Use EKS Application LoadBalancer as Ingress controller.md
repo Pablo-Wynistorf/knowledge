@@ -2,7 +2,7 @@ First you need to install helm, aws cli, kubectl and eksctl. Also make sure to b
 
 Then run the following terraform code. Please be aware that you have to change the region and cluster name.
 
-[create-eks-loadbalancer-role.tf](https://slabstatic.com/prod/uploads/ptzfq7y2/posts/attachments/6Y6BVrte1rHmJpKF2oALxK8q.tf)
+[https://github.com/Pablo-Wynistorf/terraform/blob/main/aws/create-eks-ingress-loadbalancer-role/create-eks-loadbalancer-role.tf](https://github.com/Pablo-Wynistorf/terraform/blob/main/aws/create-eks-ingress-loadbalancer-role/create-eks-loadbalancer-role.tf)
 
 
 

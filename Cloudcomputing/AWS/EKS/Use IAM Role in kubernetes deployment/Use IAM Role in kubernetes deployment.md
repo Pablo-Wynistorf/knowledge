@@ -1,3 +1,11 @@
+Associate Identity Provider:
+
+```yaml
+eksctl utils associate-iam-oidc-provider --region <region> --cluster <cluster_name> --approve
+```
+
+
+
 First you need to create a role in iam. Click create role in iam and select "custom trust policy"
 
 ![](https://slabstatic.com/prod/uploads/ptzfq7y2/posts/images/preload/kc-GHFdIO9OxV4kOTycyNAFB.png)

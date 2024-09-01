@@ -1,7 +1,7 @@
 First you need to add the helm repo:
 
 ```bash
-helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
 ```
 
 ```
@@ -17,13 +17,29 @@ kubectl create ns ingress-nginx
 Then you can install the helm release:
 
 ```bash
-helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace ingress-nginx --set controller.kind=daemonset --set controller.metrics.enabled=true --set-string controller.podAnnotations."prometheus\.io/scrape"="true" --set-string controller.podAnnotations."prometheus\.io/port"="10254" --set controller.ingressClass.create=true
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx --create-namespace \
+  --set rbac.create=true \
+  --set controller.metrics.enabled=true \
+  --set-string controller.podAnnotations."prometheus\.io/scrape"="true" \
+  --set-string controller.podAnnotations."prometheus\.io/port"="10254" \
+  --set controller.ingressClass.create=true \
+  --set controller.replicaCount=3
 ```
 
 On AWS use this command instead:
 
 ```bash
-helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace ingress-nginx --set controller.kind=daemonset --set controller.metrics.enabled=true --set-string controller.podAnnotations."prometheus\.io/scrape"="true" --set-string controller.podAnnotations."prometheus\.io/port"="10254" --set controller.ingressClass.create=true --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-scheme"=internet-facing --set-string controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-cross-zone-load-balancing-enabled"="true"
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx --create-namespace \
+  --set rbac.create=true \
+  --set controller.metrics.enabled=true \
+  --set-string controller.podAnnotations."prometheus\.io/scrape"="true" \
+  --set-string controller.podAnnotations."prometheus\.io/port"="10254" \
+  --set controller.ingressClass.create=true \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-scheme"=internet-facing \
+  --set-string controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-cross-zone-load-balancing-enabled"="true" \
+  --set controller.replicaCount=3
 ```
 
 This makes sure that the loadbalancer of the ingress controller is internet-facing.
@@ -33,7 +49,7 @@ This makes sure that the loadbalancer of the ingress controller is internet-faci
 Check if everything worked:
 
 ```bash
-kubectl get ds -n ingress-nginx
+kubectl get deploy -n ingress-nginx
 ```
 
 It should look like this:
