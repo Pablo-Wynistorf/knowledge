@@ -1,0 +1,5 @@
+Powershellcommand:
+
+```
+slmgr -rearm
+```
