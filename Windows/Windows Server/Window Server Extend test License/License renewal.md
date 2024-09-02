@@ -1,5 +1,0 @@
-Powershellcommand:
-
-```
-slmgr -rearm
-```
