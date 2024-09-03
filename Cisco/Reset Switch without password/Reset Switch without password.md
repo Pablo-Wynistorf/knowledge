@@ -1,4 +1,3 @@
-# Reset Switch without password
 ```
 #Plugin the Serial Cable.
 #Press the Mode button

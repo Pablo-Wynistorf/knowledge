@@ -1,4 +1,3 @@
-# Reset Access Point
 - Connect the console cable
 - Unplug the power or network cable if connected to a POE switch
 - Press and hold the Mode button

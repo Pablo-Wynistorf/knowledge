@@ -1,4 +1,3 @@
-# Tacacs Config on Switch
 ```yaml
 aaa group server tacacs+ ISE-Server
  server-private 10.1.0.15 key $KEY

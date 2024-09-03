@@ -1,4 +1,3 @@
-# Reset Switch
 ```
 conf t
 do delet flash:vlan.dat
